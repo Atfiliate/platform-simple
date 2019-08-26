@@ -24,7 +24,7 @@ app.get('*', function(request, response) {
 				let mod = codeStr=>{
 					let code = codeStr.split('export')[0];
 					eval(code);
-					let tempModule = eval(`${moduleName}`);
+					let tempModule = eval(`typeof ${moduleName} != 'undefined' && ${moduleName}`);
 					let module = {};
 						module[moduleName] = tempModule;
 					return module;
