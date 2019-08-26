@@ -142,7 +142,7 @@ app.get('*', function(request, response) {
 							res(html);
 						}else{
 							if(selector){
-								response.send(component._wrap(html));
+								component._wrap(html).then(response.send);
 							}else{
 								res(html);
 							}
@@ -152,17 +152,9 @@ app.get('*', function(request, response) {
 			})
 		}
 		component._wrap = html=>{
-			return `
-				<!DOCTYPE html>
-				<html>
-					<head>
-						<title>Cloud Render - Import Test</title>
-						<meta charset="UTF-8">
-						<script type="module" src="https://the.homeschool.express/project/import/component/test-root.js"></script>
-					</head>
-					<body>${html}</body>
-				</html>
-			`
+			return component._import('https://the.homeschool.express/project/import/component/wrapper.js', 'wrapper').then(wrapper=>{
+				return wrapper(html)
+			})
 		}
 		
 		
