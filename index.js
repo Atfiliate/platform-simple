@@ -105,7 +105,10 @@ app.get('*', function(request, response) {
 				},
 				extends: (moduleName, moduleUrl, fn)=>{
 					component._import(moduleUrl, moduleName).then(module=>{
-						fn(module[moduleName], {resolve, reject})
+						if(module[moduleName])
+							fn(module[moduleName], {resolve, reject})
+						else
+							reject(`Module ${moduleName} could not be loaded.`)
 					})
 				},
 				should: (description)=>{
