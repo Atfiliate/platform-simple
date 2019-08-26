@@ -13,6 +13,7 @@
 		"express":				"*",
 		"moment":				"*",
 		"mkdirp": 				"*",
+		"memory-cache":			"*",
 		"request": 				"*",
 		"request-promise": 		"*",
 		"firebase": 			"*",

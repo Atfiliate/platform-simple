@@ -1,4 +1,5 @@
-const express = require('express');
+const express 	= require('express');
+const mcache 	= require('memory-cache');
 // const myApp = require('./cloud/app.js') ;
 
 const app = express();
