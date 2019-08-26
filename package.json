@@ -1,0 +1,31 @@
+{
+	"name": "Platform Simple",
+	"version": "2.0.1",
+	"description": "Main services website.",
+	"engines": {
+		"node": "12.x"
+	},
+	"main": "index.js",
+	"scripts": {
+		"start": "node index.js"
+	},
+	"dependencies": {
+		"express":				"*",
+		"moment":				"*",
+		"request": 				"*",
+		"request-promise": 		"*",
+		"firebase": 			"*",
+		"firebase-admin": 		"*",
+		"cloudinary":			"*",
+		"cheerio":				"*",
+		"googleapis":			"*"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Atfiliate/platform-simple"
+	},
+	"keywords": [
+		"platform"
+	],
+	"license": "GNU AGPLv3"
+}

@@ -1,0 +1,14 @@
+{
+	"name": "Atfiliate Platform Simple",
+	"description": "This platform is provided by Atfiliate.com and is to only be used according to the terms provided with your Atfiliate account.",
+	"repository": "https://github.com/Atfiliate/platform-simple",
+	"logo": "https://res.cloudinary.com/easybusiness/image/upload/v1501005935/atfiliate/fie8kakrcahjpylzh5ta.jpg",
+	"keywords": ["atfiliate"],
+	"website": "https://platform.atfiliate.com",
+	"formation": {
+		"web": {
+			"quantity": 1,
+			"size": "free"
+		}
+	}
+}
