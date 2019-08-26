@@ -1,5 +1,7 @@
 const express 	= require('express');
 const mcache 	= require('memory-cache');
+const request	= require('request');
+const http		= require('request-promise');
 // const myApp = require('./cloud/app.js') ;
 
 const app = express();
