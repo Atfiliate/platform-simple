@@ -142,7 +142,7 @@ app.get('*', function(request, response) {
 							res(html);
 						}else{
 							if(selector){
-								component._wrap(html).then(response.send);
+								component._wrap(html);
 							}else{
 								res(html);
 							}
@@ -152,16 +152,9 @@ app.get('*', function(request, response) {
 			})
 		}
 		component._wrap = html=>{
-			let ForBrowser = new Component('ForBrowser', ForBrowser=>{
-				ForBrowser._register('BrowserWrap', 'https://the.homeschool.express/project/import/component/wrapper.js', (BrowserWrap, promise)=>{
-					promise.resolve(BrowserWrap)
-				})
-				ForBrowser._setRender(async (components, render)=>{
-					let BrowserWrap = components['BrowserWrap'];
-					BrowserWrap(html).then(render)
-				})
+			component._import('https://the.homeschool.express/project/import/component/wrapper.js', '_wrapper').then(_wrapper=>{
+				response.send(_wrapper(html))
 			})
-			return ForBrowser._render(html);
 		}
 		
 		
