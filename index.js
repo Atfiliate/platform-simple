@@ -152,8 +152,8 @@ app.get('*', function(request, response) {
 			})
 		}
 		component._wrap = html=>{
-			component._import('https://the.homeschool.express/project/import/component/wrapper.js', '_wrapper').then(_wrapper=>{
-				response.send(_wrapper(html))
+			component._import('https://the.homeschool.express/project/import/component/wrapper.js', '_wrapper').then(module=>{
+				response.send(module['_wrapper'](html))
 			})
 		}
 		
