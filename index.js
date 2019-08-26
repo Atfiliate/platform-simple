@@ -52,13 +52,22 @@ app.get('*', function(request, response) {
 			})
 		}
 		
-		component._route = (path, fn)=>{
-			let currentRoute = '';
+		component._route = (route, fn)=>{
+			let vars = {};
+			let routeVars = route.split('/');
+			let currentPath = '';
 			let routeCheck = ()=>{
-				let newRoute = 'p1'; //window.location.hash.replace('#', '');
-				if(currentRoute != newRoute){
-					currentRoute = newRoute;
-					fn(currentRoute);
+				let newPath = request.originalUrl;
+				if(currentPath != newPath){
+					vars = {};
+					currentPath = newPath;
+					let pathVars = currentPath.split('/');
+					routeVars.forEach((v,i)=>{
+						let parts = v.split(/[\{,\}]+/);
+						if(parts[1])
+							vars[parts[1]] = pathVars[i]
+					})
+					fn(vars);
 					component._render();
 				}
 			}
@@ -171,7 +180,7 @@ app.get('*', function(request, response) {
 
 	let app = new Component('MyApp', (app)=>{
 		// app._import(['/project/import/component/modal.js', '/project/import/component/forms.js'])
-		app._route('/{project}', (project)=>{
+		app._route('/{project}', ({project})=>{
 			app.project = project;
 			app._register(`page`, true).extends('Project', `https://the.homeschool.express/project/import/component/test-${project}.js`, (Project, promise)=>{
 				//we could potentially load user credentials, settings, preferences etc, and pass them into the project.
