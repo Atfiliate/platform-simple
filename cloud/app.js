@@ -148,6 +148,9 @@ module.exports = {
                     })
                 })
             }
+            component._on = (event, fn)=>{
+                //the server does not do anything with this because there are no server interactions with the component.
+            }
             component._wrap = html=>{
                 component._import('https://the.homeschool.express/project/import/component/wrapper.js', '_wrapper').then(module=>{
                     response.send(module['_wrapper'](html))
