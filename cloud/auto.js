@@ -5,12 +5,21 @@ var moment		= require('moment');
 var mcache		= require('memory-cache');
 var db 			= firebase.firestore();
 
-if(process.env.cloudinaryName)
+//initialize with env variables
+if(process.env.firebase && process.env.googleJson){
+	firebase.initializeApp({
+		databaseURL: process.env.firebase,
+		credential: firebase.credential.cert(JSON.parse(process.env.googleJson))
+	});
+}
+if(process.env.cloudinaryName){
 	cloudinary.config({
 		cloud_name: process.env.cloudinaryName,
 		api_key: process.env.cloudinaryKey,
 		api_secret: process.env.cloudinaryToken
 	});
+}
+
 
 module.exports = {
 	options: function(request, response){
