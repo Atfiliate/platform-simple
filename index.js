@@ -4,13 +4,12 @@ const http		= require('request-promise');
 const auto 		= require("./cloud/auto.js");
 const myApp 	= require('./cloud/app.js') ;
 
-const app = express();
 
+const app = express();
 app.set('port', (process.env.PORT || 5000));
 
 app.get('/project/:projId/component/:component', auto.project)
 app.get('/project/component/:component', auto.project)
-
 
 app.options('/project/:projId/cloud/:cloud', auto.options)
 app.get('/project/:projId/cloud/:cloud', auto.project)

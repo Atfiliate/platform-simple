@@ -1,9 +1,9 @@
-var firebase	= require('firebase-admin');
-var http		= require('request-promise');
-var cloudinary	= require('cloudinary');
-var moment		= require('moment');
-var mcache		= require('memory-cache');
-var db 			= firebase.firestore();
+const firebase		= require('firebase-admin');
+const http			= require('request-promise');
+const cloudinary	= require('cloudinary');
+const moment		= require('moment');
+const mcache		= require('memory-cache');
+let db;
 
 //initialize with env variables
 if(process.env.firebase && process.env.googleJson){
@@ -11,6 +11,7 @@ if(process.env.firebase && process.env.googleJson){
 		databaseURL: process.env.firebase,
 		credential: firebase.credential.cert(JSON.parse(process.env.googleJson))
 	});
+	db = firebase.firestore();
 }
 if(process.env.cloudinaryName){
 	cloudinary.config({
