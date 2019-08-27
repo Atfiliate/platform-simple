@@ -1,3 +1,6 @@
+const mcache 	= require('memory-cache');
+const http		= require('request-promise');
+
 module.exports = {
     run: function(request, response) {
         function Component(name, fn){
