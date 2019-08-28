@@ -24,17 +24,18 @@ module.exports = {
                         return module;
                     }
                     
-                    var componentMeta = mcache.get(id);
-                    if(componentMeta){
+                    try{
+                        var componentMeta = mcache.get(id);
                         fs.readFile(`components/${id}`, 'utf8', (e,d)=>{
                             let code = d;
-                            console.log('code from fs',code)
+                            console.log('code from fs: ', url)
                             res(mod(code))
                         })
-                    }else{
+                    }catch(e){
                         http({url}).then(r=>{
                             let code = r;
                             fs.writeFile(`components/${id}`, code, (e)=>{
+                                console.log('code from url: ', url)
                                 if(e)
                                     console.log(e)
                                 else
