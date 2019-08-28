@@ -1,5 +1,20 @@
 const mcache 	= require('memory-cache');
 const http		= require('request-promise');
+const mkdirp     = require('mkdirp');
+const fs        = require('fs');
+
+mkdirp('components')
+
+let hash = (str)=>{
+    var hash = 0, i, chr;
+    if (str.length === 0) return hash;
+    for (i = 0; i < str.length; i++) {
+        chr   = str.charCodeAt(i);
+        hash  = ((hash << 5) - hash) + chr;
+        hash |= 0; // Convert to 32bit integer
+    }
+    return hash;
+};
 
 module.exports = {
     run: function(request, response) {
@@ -11,9 +26,7 @@ module.exports = {
             
             component._import = async function(url, moduleName){
                 return new Promise((res,rej)=>{
-                    let id = url.split('/').join('_')
-                    var mkdir = require('mkdirp');
-                    var fs = require('fs');
+                    let id = hash(url);
                     
                     let mod = codeStr=>{
                         let code = codeStr.split('export')[0];
