@@ -24,14 +24,14 @@ module.exports = {
                         return module;
                     }
                     
-                    try{
-                        var componentMeta = mcache.get(id);
-                        fs.readFile(`components/${id}`, 'utf8', (e,d)=>{
-                            let code = d;
-                            console.log('code from fs: ', url)
-                            res(mod(code))
-                        })
-                    }catch(e){
+                    // try{
+                    //     var componentMeta = mcache.get(id);
+                    //     fs.readFile(`components/${id}`, 'utf8', (e,d)=>{
+                    //         let code = d;
+                    //         console.log('code from fs: ', url)
+                    //         res(mod(code))
+                    //     })
+                    // }catch(e){
                         http({url}).then(r=>{
                             let code = r;
                             fs.writeFile(`components/${id}`, code, (e)=>{
@@ -43,7 +43,7 @@ module.exports = {
                                 res(mod(code))
                             })
                         })
-                    }
+                    // }
                 })
             }
             
